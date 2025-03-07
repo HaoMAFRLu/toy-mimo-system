@@ -240,7 +240,8 @@ class ToyMIMO():
         """
         return np.fft.ifft(SIGNAL, axis=1).real 
     
-    def save_params(self, params: list, file_name: str) -> None:
+    def save_params(self, params: list, 
+                    file_name: str) -> None:
         """Save the data of the transfer functions.
         """
         path_folder = os.path.join(self.root, 'data', 'systems', file_name)
@@ -258,13 +259,15 @@ class ToyMIMO():
 
     def excite_channel(self, H, 
                        u: np.ndarray, 
-                       t_stamp: np.ndarray) -> complex:
+                       t_stamp: np.ndarray) -> np.ndarray:
         """
         """
         t_out, y_out, _ = signal.lsim(H, U=u, T=t_stamp)
         return y_out
 
-    def excite_dof(self, H, u, t_stamp):
+    def excite_dof(self, H: np.ndarray, 
+                   u: np.ndarray, 
+                   t_stamp: np.ndarray) -> np.ndarray:
         """
         """
         m, N = u.shape

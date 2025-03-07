@@ -27,8 +27,17 @@ def load_file(file_nmae: str) -> dict:
     """Load data from file.
     """
     root = get_parent_path(lvl=1)
-    path_file = os.path.join(root, 'data', 'excitation_signal', file_nmae)
+    path_file = os.path.join(root, 'data', 'excitation_signals', file_nmae)
     with open(path_file, 'rb') as file:
         data = pickle.load(file)
     return data
+
+def save_data(data: dict,
+              file_name: str) -> None:
+    """Save the data.
+    """ 
+    root = get_parent_path(lvl=1)
+    path_file = os.path.join(root, 'data', 'response_signals', file_name)
+    with open(path_file, 'wb') as file:
+        pickle.dump(data, file)
 
